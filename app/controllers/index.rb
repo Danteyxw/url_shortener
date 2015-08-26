@@ -12,6 +12,9 @@ end
 
 get '/:short' do
   short = params[:short]
-  url = Url.find_by(short: short).original
-  redirect "#{url}"
+  url = Url.find_by(short: short)
+  url.click_count = url.click_count.to_i + 1
+  url.save
+  original = url.original
+  redirect "#{original}"
 end
