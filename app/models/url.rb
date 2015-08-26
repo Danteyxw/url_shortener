@@ -1,4 +1,6 @@
 class Url < ActiveRecord::Base
+  validates :original, format: { with: /\A#{URI::regexp(['http', 'https'])}\z/ }
+
   def shorten
     last = Url.last
 
@@ -49,4 +51,5 @@ class Url < ActiveRecord::Base
 
     self.short = latest
   end
+
 end
