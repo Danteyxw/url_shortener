@@ -1,4 +1,5 @@
 class Url < ActiveRecord::Base
+  validates :original, presence: true
   validates :original, format: { with: /\A#{URI::regexp(['http', 'https'])}\z/ }
 
   def shorten
