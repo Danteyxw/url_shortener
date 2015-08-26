@@ -5,11 +5,12 @@ end
 
 post '/shorten' do
   url = params[:url]
-  if new_url = Url.new(original: url).valid?
+  if (new_url = Url.new(original: url)).valid?
     new_url.short = new_url.shorten
     new_url.save
+    "Your shortened URL: localhost::9393/#{new_url.short}"
   else
-    puts "Invalid link"
+    "Invalid URL"
   end
 end
 
