@@ -11,4 +11,7 @@ post '/shorten' do
 end
 
 get '/:short' do
+  short = params[:short]
+  url = Url.find_by(short: short).original
+  redirect "#{url}"
 end
